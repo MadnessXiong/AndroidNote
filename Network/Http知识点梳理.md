@@ -77,15 +77,15 @@
 
 2. Content-Type：内容的类型,响应的返回的数据格式
 
-     - text/html:文本，用于浏览器页面响应
+      - text/html:文本，用于浏览器页面响应
 
-     - application/x-www.form-urlencoded:普通表单（比如登陆信息）
+      - application/x-www.form-urlencoded:普通表单（比如登陆信息）
 
-     - multipart/form-data:多部分数据，一般用于传输包含二进制内容的多项内容（修改信息+上传用户头像），由于是多项，需要boundary进行分隔各项内容，会多占用一定空间，所以纯文本一般不使用这种方式。
+      - multipart/form-data:多部分数据，一般用于传输包含二进制内容的多项内容（修改信息+上传用户头像），由于是多项，需要boundary进行分隔各项内容，会多占用一定空间，所以纯文本一般不使用这种方式。
     
-     - application/json:json格式
+      - application/json:json格式
 
-     - image/jpeg/zip:单文件，图片。没有boundary,适合单文件上传。
+      - image/jpeg/zip:单文件，图片。没有boundary,适合单文件上传。
 
 3. location:重定向目标URL
 
@@ -93,7 +93,21 @@
 
 5. Range/Accept-Range：指定Body的内容范围，可以用于断点续传，分段下载。
 
-6. Cookie/Set-Cookie：发送Cookie/设置Cookie
+6. Cookie & Session
+ 
+      - Cookie的定义及工作机制：Cookie是访问某些网站以后在本地存储一些网站相关的信息，下次再访问的时候减少一些步骤 。Cookie是服务器在本地机器上存储的小段文本并随每一个请求发送至同一个服务器，是一种在客户端保持状态的方案。
+      
+      - Cookie的应用：购物车，用户偏好，主题设置，分析用户行为等。
+    
+      - Session的定义及工作机制：Session是存在服务器的一种用来存放用户数据的类HashTable结构。当浏览器第一次发送请求时，服务器自动生成了一个HashTable和一个Session ID用来唯一标识这个HashTable，并将Session ID通过响应发送回浏览器。当浏览器第二次发送请求时，会将前一次服务端响应中的Session ID放在请求中（Cookie中）一并发送到服务器，服务器从请求中提取出Session ID，并和保存的所有Session ID进行对比，找到这个用户对应的HashTable。
+    
+      - Cookie和Session的区别：
+            
+        - Cookie数据存在客户端浏览器上，Session数据存在服务器上
+    
+        - Cookie因为存在本地，可以通过分析本地的Cookie进行Cookie欺骗，所以安全性较低
+          
+        - Session会在一定时间内保存在服务器上。当访问增多，会占用服务器性能，如果主要到减轻服务器性能，不必要的信息可以使用Cookie。一般将登陆等重要信息存放在Session，其他信息如果需要保留，可以存放在Cookie。
 
 7. Accept：客户端能接收的数据类型。如text/html
 
@@ -102,11 +116,26 @@
 9. Content-Encoding:压缩类型。如gzip
 
 10. Cache-Control:
+
       - no-cache:告诉客户端可以缓存，但是再次请求时需要询问是否已失效。
 
       - no-store:不缓存
 
       - max-age：在指定失效日期之前都可以缓存
 
-11.  Etag:数据的hash,用来判断是否更新过
+11. Etag:数据的hash,用来判断是否更新过
+
+12. Authorization：2种方式
+    
+      - Basic :直接把信息Base64后拼接在后面。
+    
+       - Bearer：
+       
+          - 直接使用：Authorization：Bear（bearer token-token通过授权方拿到）
+
+          - OAuth2过程
+            - 客户端访问授权方拿到Authorization code
+            - 客户端把Authorization code交给自己服务器
+            - 服务器提交Authorization code和client_secret向授权方申请token。（client_secret是在注册授权方时拿到的，严格保密的）
+            - OAuth2过程结束，客户端需要信息时通过访问服务器，服务器携带token访问授权方取得信息，再传给客户端
 
