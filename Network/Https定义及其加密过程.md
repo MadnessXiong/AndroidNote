@@ -2,9 +2,11 @@
 >加密及签名参考-[Base64，Hash，加密，签名知识点梳理](https://github.com/MadnessXiong/AndroidNote/blob/master/Network/Base64，Hash，加密，签名知识点梳理.md)
 
 ### 1. Https
+
    - 定义：Https是基于Http标准并通过SSL层对TCP传输数据进行加密，所以Https是对Http+SSL/TCP的简称。
 
 ### 2. SSL/TCL
+
   - 定义:SSL是指安全套接字层，是基于HTTP之下TCP之上的一个协议层，可确保互联网连接安全，保护两个系统之间发送的任何敏感数据。TLS是更为安全的SSL。
 
 ### 3. Https加密过程：
