@@ -456,7 +456,7 @@ setFrame()完后，如果布局发生了改变或者调用requestLayout()，那�
 ```
 一般在onDraw()绘制自身内容，另外viewGroup默认不回执行onDraw(),同时onDraw()是一个会调用很多次的方法，所以不要在onDraw()做一些计算或频繁分配内存的工作，一面造成内存抖动。
 
-**### 3:总结**
+### 3:总结
 
 - view的绘制流程是从ViewRootImpl的performTraversals()开始的，在这个方法里依次调用了measure(),layout(),draw()
 
@@ -470,7 +470,7 @@ setFrame()完后，如果布局发生了改变或者调用requestLayout()，那�
 
 - 最后是onDraw()这个方法就是绘制具体内容的方法，所以它会频繁执行，所以需要避免在此频繁分配内存的操作。viewgroup默认不会执行ondraw()
 
-**附：invalidate()和requestLayout()的区别***
+### 附：invalidate()和requestLayout()的区别
 - invalidate()不会执行measure()和layout()，只执行draw(),如果开启了硬件加速则只进行调用者View的重绘。
 
 - requestLayout()会执行自身及父view的measure(),layout(),一般情况下不会执行draw流程，如果要重绘必须调用invalidate()，或者当布局大小发生改变时layout()中的setFrame()会触发重绘。子View不一定会重新measure()和layout()。
