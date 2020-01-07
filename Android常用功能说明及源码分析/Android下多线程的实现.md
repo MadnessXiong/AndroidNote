@@ -4,7 +4,7 @@
 
 **android下与多线程有关的主要有以下几个类：**
 
-* Handler：主要用于线程间通信（常用）参考：[Handler的使用及调用流程源码分析](https://github.com/MadnessXiong/AndroidNote/blob/master/Android源码分析/Handler的使用及调用流程源码分析.md)
+* Handler：主要用于线程间通信（常用）参考：[Handler的使用及调用流程源码分析](https://github.com/MadnessXiong/AndroidNote/blob/master/Android常用功能说明及源码分析/Handler的使用及调用流程源码分析.md)
 
 * HandlerThread：继承了Thread，实际上就是封装了Handler的Thread。（基本不用）
 
