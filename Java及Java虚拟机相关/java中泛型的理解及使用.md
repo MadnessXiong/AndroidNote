@@ -4,9 +4,9 @@ Java从1.5开始加入了泛型，主要是解决类型安全及扩展问题。
 
 泛型的一些特性：
 
-* 泛型是类型擦除的：Java的泛型只在编译期有效（class对象保留了泛型信息），之后会将泛型信息抹除。泛型不会进入运行时阶段。如运行时List<String>和List<Integer>是一样的。
+**1:泛型是类型擦除的：Java的泛型只在编译期有效（class对象保留了泛型信息），之后会将泛型信息抹除。泛型不会进入运行时阶段。如运行时List<String>和List<Integer>是一样的。**
 
-* 泛型不是协变的：如String是Object的子类，但是List<String>并不是List<Object>的子类型，它们是2个单独的类型。
+**2:泛型不是协变的：如String是Object的子类，但是List<String>并不是List<Object>的子类型，它们是2个单独的类型。**
 
 ### 2. 泛型的使用
 
