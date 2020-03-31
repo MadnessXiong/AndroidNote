@@ -129,7 +129,7 @@ public <T> T create(final Class<T> service) {
             this.parameterAnnotationsArray = method.getParameterAnnotations();
         }
 ```
-1.  通过Retrofit.Builder（）的构造方法来看，它传入了retrofit和method，然后获取了方法的注解，方法的参数类型，方法的每一个参数的每一个注解。然后赋值到Builder的成员变量，记录下来。
+1.  ServiceMethod.Builder（）的构造方法来看，它传入了retrofit和method，然后获取了方法的注解，方法的参数类型，方法的每一个参数的每一个注解。然后赋值到Builder的成员变量，记录下来。
 
 2.  再看build()做了什么
 ```
