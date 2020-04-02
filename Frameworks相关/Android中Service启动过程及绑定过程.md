@@ -121,7 +121,7 @@ startService()的启动分为3个部分
   可以看到，这一步其实是获取了ServiceRecord，它用来描述一个service,然后调用了startServiceInnerLocked()，看代码：
 
   ```java
-  526      ComponentName startServiceInnerLocked()  {
+         ComponentName startServiceInnerLocked()  {
   
              String error = bringUpServiceLocked(r, service.getFlags(), callerFg, false, false);
              return r.name;
