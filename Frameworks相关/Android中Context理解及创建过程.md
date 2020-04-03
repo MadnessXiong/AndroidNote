@@ -10,7 +10,7 @@
 ### Context的关联类：
 
 Context关联类的关系如下图：
-![image-20200403192950842.png](/work/learn/note/AndroidNote/Frameworks相关/Res/image-20200403192950842.png)
+![image-20200403192950842.png](Frameworks相关/Android中Context理解及创建过程.md)
 
 从上图可知，一个应用程序进程的Context数量等于Activity和Service的总个数加一个Application。
 
