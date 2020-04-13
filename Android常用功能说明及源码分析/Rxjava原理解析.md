@@ -144,7 +144,7 @@ Single.just("1")这一行在上面分析过了，主要是把Single转换为Sing
     }
 ```
 
-可以看到，这一步又把SingleJust转换为了一个SingleMap，那么现在被观察者就转换为了SingleMap，那么现在可以把被观察者SingleJust称为上游观察者，同时把观察者和处理数据的mapper,存入了SingleMap中。
+可以看到，这一步又把SingleJust转换为了一个SingleMap，那么现在被观察者就转换为了SingleMap，那么现在可以把被观察者SingleJust称为上游被观察者，同时把上游被观察者和处理数据的mapper,存入了SingleMap中。
 
 第三行开始订阅，在这里被观察者已经变成了SingleMap，那么会执行它的subscribeActual()：
 
@@ -156,9 +156,9 @@ Single.just("1")这一行在上面分析过了，主要是把Single转换为Sing
     }
 ```
 
-如果这里回调观察者的onSuceess()，那么就和之前总结的没有区别，但是这里调用了source.subscribe(),由上级观察者再次订阅。也就是说，产生订阅关系后，事件开始从下往上传递，对数据进行处理。
+如果这里回调观察者的onSuccess()，那么就和之前总结的没有区别，但是这里调用了source.subscribe(),由上游被观察者再次订阅。也就是说，产生订阅关系后，事件开始从下往上传递，对数据进行处理。
 
-根据之前的代码source.subscribe()，最终会执行surece的subscribeActual()，再执行到观察者的onSuccess(),也就是MapSingleObserver的onSuccess()：
+根据之前的代码source.subscribe()，最终会执行source的subscribeActual()，再执行到观察者的onSuccess(),也就是MapSingleObserver的onSuccess()：
 
 ```
 static final class MapSingleObserver<T, R> implements SingleObserver<T> {
