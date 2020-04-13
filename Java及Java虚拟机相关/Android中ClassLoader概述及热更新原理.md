@@ -85,7 +85,7 @@
                     //如果父加载器不为null，则代表当前不是最顶层的ClassLoader，则向上传递，让父类去加载
                         c = parent.loadClass(name, false);
                     } else {
-                    //如果父加载器不为null,则代表已到顶层ClassLoader，直接去加载
+                    //如果父加载器为null,则代表已到顶层ClassLoader，直接去加载
                         c = findBootstrapClassOrNull(name);
                     }
                 } catch (ClassNotFoundException e) {
