@@ -1,4 +1,14 @@
-### AMS7.0和8.0的区别
+### 1. AMS功能概述
+
+- 组件状态管理：包括四大组件的开启，关闭等一系列操作。如startActivity,startActivityAndWait,activityPaused,startService,stopService,removeContentProvider等
+- 组件状态查询：查询组件当前运行等情况。如getCallingActivity,getService等
+- Task相关：包括removeTask,removeSubTask,moveTaskBackwards,moveTaskToFront等
+
+AMS是通过ActivityStack及其他数据结构来记录，管理系统中的Activity及其他组件状态的，并提供查询功能的一个系统服务。
+
+
+
+### 2. AMS7.0和8.0的区别
 
 - **AMS7.0:**
 
@@ -109,7 +119,7 @@
 
   可以看到，这里直接返回了一个AMS代理对象，没有了AMP。
 
-### 2. AMS的启动过程
+### 3. AMS的启动过程
 
 从[Android系统启动过程简述](https://github.com/MadnessXiong/AndroidNote/blob/master/Frameworks相关/Android系统启动过程简述.md)中可知，AMS在SystemServer的main()中启动。看代码：
 
@@ -207,12 +217,12 @@
 
 那么到这里AMS就启动并且返回了。
 
-### 3. AMS与应用程序进程
+### 4. AMS与应用程序进程
 
 - 启动应用程序进程时AMS会通过进程名和uid查询这个进程是否存在
 - 如果应用程序进程不存在，则AMS就会请求Zygote进程创建需要的应用程序进程
 
-### 4. AMS中重要的数据结构
+### 5. AMS中重要的数据结构
 
 - ActivityRecord：记录了Activity的所有信息，因此它用来描述一个activity。它是在activity启动时被创建的，具体是在ActivityStarter的startActivity()中被创建的。它存储的信息主要包括以下内容：
   - service：AMS的引用
@@ -233,7 +243,7 @@
   - mService:AMS的引用
 - ActivityStack：用来管理系统所有的Activity，内部维护了Activity的所有状态，特殊状态的Activity以及和Activity相关的列表等数据。
 
-### 5. Activity栈管理
+### 6. Activity栈管理
 
 Activity是放入Activity任务栈中的，有了任务栈，系统和开发者就能更好地应用和管理Activity，来完成各种业务逻辑
 
